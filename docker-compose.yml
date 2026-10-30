@@ -1,0 +1,35 @@
+include:
+  - path:
+      - ./ai-interview-backend/docker-compose.yml
+      - ./ai-interview-backend/docker-compose.dev.yml
+
+services:
+  frontend:
+    build:
+      context: ./ai-interview-frontend
+    container_name: ai-interview-frontend
+    restart: unless-stopped
+    environment:
+      - VITE_PROXY_TARGET=http://app:8006
+    ports:
+      - "3000:3000"
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  admin:
+    build:
+      context: ./ai-interview-admin
+    container_name: ai-interview-admin
+    restart: unless-stopped
+    environment:
+      - VITE_PROXY_TARGET=http://app:8006
+    ports:
+      - "3001:3001"
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - app-network

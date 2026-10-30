@@ -1,0 +1,10 @@
+[
+  {
+    "query": "Python 异步并发与 asyncio",
+    "relevant_ids": [1]
+  },
+  {
+    "query": "Redis 缓存与过期策略",
+    "relevant_ids": [2]
+  }
+]

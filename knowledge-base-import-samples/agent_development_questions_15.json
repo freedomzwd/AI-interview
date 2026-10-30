@@ -1,0 +1,152 @@
+[
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "easy",
+    "question": "Agent 与普通大模型单次调用的核心区别是什么？",
+    "reference_answer": "普通调用通常完成一次输入输出；Agent 围绕目标进行多步决策，能够选择工具、观察结果、更新状态并继续执行，直到满足停止条件。",
+    "key_points": ["目标驱动", "多步决策", "工具调用", "状态更新", "停止条件"],
+    "tags": ["Agent", "LLM", "基础概念"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "如何设计一个可靠的 Tool Calling schema？",
+    "reference_answer": "工具应有单一职责、明确描述、严格类型、必填字段和枚举约束。服务端必须再次校验参数、鉴权和资源范围，错误返回应结构化且不泄露内部信息。",
+    "key_points": ["单一职责", "参数类型", "Schema 校验", "服务端鉴权", "结构化错误"],
+    "tags": ["Tool Calling", "Schema", "可靠性"],
+    "source": "project_seed"
+  },
+  {
+    "category": "system_design",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "为什么复杂 Agent 更适合使用显式状态图而不是无限 ReAct 循环？",
+    "reference_answer": "状态图能明确节点职责、状态字段、分支和终止条件，便于限制循环、恢复任务、测试单个节点和观测执行路径。无限循环更容易出现成本失控、重复调用和不可预测行为。",
+    "key_points": ["显式状态", "终止条件", "可恢复", "可测试", "成本控制"],
+    "tags": ["LangGraph", "状态机", "ReAct"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "Agent 的短期记忆和长期记忆分别适合保存什么？",
+    "reference_answer": "短期记忆保存当前任务的对话、计划和工具结果；长期记忆保存跨会话仍有价值且获得授权的稳定偏好或事实。长期记忆需要用户隔离、敏感信息控制和更新策略。",
+    "key_points": ["会话状态", "跨会话事实", "授权", "用户隔离", "更新策略"],
+    "tags": ["Memory", "上下文", "隐私"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "如何防止 Agent 因 Prompt 注入调用高风险工具？",
+    "reference_answer": "将检索内容视为不可信数据，保持系统指令优先级；工具调用必须经过服务端白名单、鉴权、参数校验和资源范围检查；重要写操作需要确认、幂等键和审计日志。",
+    "key_points": ["不可信上下文", "工具白名单", "鉴权", "人工确认", "审计日志"],
+    "tags": ["Prompt Injection", "安全", "工具调用"],
+    "source": "project_seed"
+  },
+  {
+    "category": "system_design",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "Agent 与 RAG 在一个系统中应该如何分工？",
+    "reference_answer": "RAG 负责检索外部知识并提供上下文，Agent 负责判断何时检索、选择数据源、调用业务工具和编排流程。检索结果用于提供依据，但不能覆盖系统安全规则。",
+    "key_points": ["RAG 知识增强", "Agent 流程决策", "检索时机", "工具编排", "安全边界"],
+    "tags": ["Agent", "RAG", "架构"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "工具调用为什么需要幂等设计？",
+    "reference_answer": "模型可能重试或重复选择同一工具，网络超时也可能让调用方无法确认执行结果。幂等键可以避免重复创建、扣费或发送消息，并让失败重试更安全。",
+    "key_points": ["重复调用", "网络超时", "幂等键", "安全重试", "副作用控制"],
+    "tags": ["幂等", "工具调用", "分布式系统"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "如何评估 Agent 的工具选择能力？",
+    "reference_answer": "构建包含正常、模糊、无权限和故障场景的数据集，评估工具选择准确率、参数正确率、任务成功率、平均步骤数、延迟、成本和失败恢复率，并记录完整 trace 做误差分析。",
+    "key_points": ["测试集", "选择准确率", "参数正确率", "任务成功率", "trace"],
+    "tags": ["Evals", "工具选择", "可观测性"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "为什么 Agent 的工具返回值应尽量结构化？",
+    "reference_answer": "结构化返回便于模型定位关键字段、减少无关 token、执行 schema 校验并在后续节点稳定复用。长篇自然语言会增加成本，也容易让模型误解结果。",
+    "key_points": ["关键字段", "减少 Token", "Schema 校验", "稳定复用", "降低歧义"],
+    "tags": ["工具返回", "JSON", "Token"],
+    "source": "project_seed"
+  },
+  {
+    "category": "system_design",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "如何设计可恢复的长任务 Agent？",
+    "reference_answer": "将任务拆成幂等节点，持久化 checkpoint、当前状态和已完成动作；为外部调用设置超时重试；恢复时从最后一致状态继续，并避免重复执行有副作用的工具。",
+    "key_points": ["幂等节点", "Checkpoint", "状态持久化", "超时重试", "避免重复副作用"],
+    "tags": ["Checkpoint", "LangGraph", "任务恢复"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "Agent 上下文过长时有哪些压缩策略？",
+    "reference_answer": "可以使用滑动窗口、阶段摘要、重要事实提取、工具结果裁剪和检索式记忆。关键业务事实应保存为结构化状态，避免只依赖可能失真的自然语言摘要。",
+    "key_points": ["滑动窗口", "摘要", "事实提取", "结果裁剪", "结构化状态"],
+    "tags": ["Context", "Memory", "Token"],
+    "source": "project_seed"
+  },
+  {
+    "category": "project",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "岗位匹配 Agent 的合理工具链是什么？",
+    "reference_answer": "先获取已解析简历，构建候选人画像，再读取岗位模板并计算匹配度，最后获取面试重点并生成可解释推荐。每一步保存结构化结果，并在数据不足时返回明确提示。",
+    "key_points": ["简历读取", "候选人画像", "岗位模板", "匹配解释", "结构化结果"],
+    "tags": ["岗位匹配", "Agent 工作流", "AI 面试"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "多 Agent 系统最常见的工程风险有哪些？",
+    "reference_answer": "常见风险包括职责重叠、消息循环、并发写冲突、上下文膨胀、难以归因的错误和成本失控。应明确角色边界、通信 schema、并发限制、共享状态写入规则和全链路 trace。",
+    "key_points": ["职责边界", "消息循环", "并发冲突", "成本控制", "全链路追踪"],
+    "tags": ["Multi-Agent", "并发", "系统设计"],
+    "source": "project_seed"
+  },
+  {
+    "category": "technical",
+    "position_tag": "agent_development",
+    "difficulty": "medium",
+    "question": "模型输出结构化 JSON 失败时应如何处理？",
+    "reference_answer": "先用 schema 校验；失败后可提取 JSON、执行一次低温修复调用，再失败则返回安全降级结果。必须记录原始响应和提示词版本，但日志要脱敏。",
+    "key_points": ["Schema 校验", "JSON 提取", "修复调用", "安全降级", "脱敏日志"],
+    "tags": ["JSON", "Pydantic", "容错"],
+    "source": "project_seed"
+  },
+  {
+    "category": "system_design",
+    "position_tag": "agent_development",
+    "difficulty": "hard",
+    "question": "生产 Agent 应记录哪些可观测性信息？",
+    "reference_answer": "应记录 trace_id、用户或租户范围、模型与提示词版本、每次工具调用及参数摘要、节点耗时、token、成本、重试、错误类型和最终状态，并对个人数据和密钥脱敏。",
+    "key_points": ["Trace ID", "模型版本", "工具调用", "耗时与成本", "日志脱敏"],
+    "tags": ["Observability", "Tracing", "生产工程"],
+    "source": "project_seed"
+  }
+]

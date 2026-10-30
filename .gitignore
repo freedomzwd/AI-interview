@@ -1,0 +1,37 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and build output
+node_modules/
+dist/
+test-results/
+playwright-report/
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Runtime data
+logs/
+uploads/
+celerybeat-schedule.db
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local workspace data (personal memory / notes, not source code)
+.workbuddy/
+
+# Downloaded local tooling and archives
+*.zip
+docker-compose-linux-*
