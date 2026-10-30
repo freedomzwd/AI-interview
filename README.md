@@ -24,8 +24,8 @@
 只需安装并启动 Docker Desktop：
 
 ```bash
-git clone https://github.com/freedomzwd/ai-interview-agent.git
-cd ai-interview-agent
+git clone https://github.com/freedomzwd/AI-interview.git
+cd AI-interview
 docker compose up -d --build
 ```
 
@@ -239,7 +239,7 @@ Agent 主流程：
 ## 项目结构
 
 ```text
-ai-interview/
+AI-interview/
 ├─ ai-interview-backend/     # FastAPI + PostgreSQL + Redis + Celery
 ├─ ai-interview-frontend/    # 用户端前端
 ├─ ai-interview-admin/       # 管理端前端
